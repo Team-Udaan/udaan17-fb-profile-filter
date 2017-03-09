@@ -1,0 +1,26 @@
+#profile-picture, #overlaid-profile-picture {
+    width: 100%;
+    height: auto;
+}
+
+#main-card {
+    padding:0 25px 50px 25px;
+    border-radius: 2px;
+    border: 1px solid rgba(51, 51, 51, .5);
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    min-height: 80vh;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(51,51,51,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(51,51,51,1);
+    box-shadow: 2px 2px 5px 0px rgba(51,51,51,1);
+    transition: width 0.5s ease, margin 0.5s ease;
+}
+
+#image-section {
+    transition: display 0.5s ease;
+}
+
+#upload-button {
+    font-size: 16px;
+    padding: 10px 16px;
+}

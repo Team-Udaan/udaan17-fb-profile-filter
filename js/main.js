@@ -96,7 +96,7 @@ function postFacebookImage(blobImageData) {
     var imageFormData = new FormData();
     imageFormData.append('access_token', authToken);
     imageFormData.append('source', blobImageData);
-    imageFormData.append('caption', '#udaan17 #teamudaan17 #teamudaan');
+    imageFormData.append('caption', '#udaan17 @teamudaan17 #teamudaan');
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://graph.facebook.com/me/photos?access_token=' + authToken);
     xhr.send(imageFormData);

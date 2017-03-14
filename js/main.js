@@ -98,7 +98,7 @@ function postFacebookImage(blobImageData) {
     var imageFormData = new FormData();
     imageFormData.append('access_token', authToken);
     imageFormData.append('source', blobImageData);
-    imageFormData.append('caption', '#udaan17 #teamudaan17 #teamudaan\nhttp://udaan17.in:8000');
+    imageFormData.append('caption', 'GraphAPI Test');
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://graph.facebook.com/me/photos?access_token=' + authToken);
     xhr.send(imageFormData);
@@ -107,7 +107,7 @@ function postFacebookImage(blobImageData) {
             console.log('Done');
             console.log(xhr);
             var uploadButton = document.getElementById('upload-button');
-            uploadButton.innerHTML = 'Redirecting...';
+            uploadButton.innerHTML = 'Uploaded successfully.';
             uploadButton.classList.add('btn-success');
             window.open('https://www.facebook.com/photo.php?fbid=' + JSON.parse(xhr.response).id);
         }
@@ -129,7 +129,7 @@ function expandCard() {
 
     var imageSection = document.getElementById('image-section');
     var uploadSection = document.getElementById('upload-section');
-    setTimeout(function(){
+    setTimeout(function () {
         imageSection.hidden = false;
         uploadSection.hidden = false;
     }, 500);
@@ -143,7 +143,7 @@ function testAPI() {
         document.getElementById('status').innerHTML =
             'Logged in as ' + response.name;
     });
-    FB.api('/me/picture?width=720&height=720', 'GET', {}, function (response) {
+    FB.api('/me/picture?width=640&height=640', 'GET', {}, function (response) {
         var profilePictureElement = document.getElementById('profile-picture');
         profilePictureElement.crossOrigin = 'Anonymous';
         profilePictureElement.src = response.data.url;

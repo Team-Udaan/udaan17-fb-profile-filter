@@ -20,6 +20,20 @@
     transition: display 0.5s ease;
 }
 
+#overlaid-images {
+    margin-top: 14px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+#overlaid-images img {
+    cursor: pointer;
+    border: 1px solid gray;
+    margin: 10px 10px;
+    display: inline-block;
+    height: 100px;
+}
+
 #upload-button {
     font-size: 16px;
     padding: 10px 16px;

@@ -109,7 +109,7 @@ function postFacebookImage(blobImageData) {
             var uploadButton = document.getElementById('upload-button');
             uploadButton.innerHTML = 'Uploaded successfully.';
             uploadButton.classList.add('btn-success');
-            window.open('https://www.facebook.com/photo.php?fbid=' + JSON.parse(xhr.response).id);
+            window.location = 'https://www.facebook.com/photo.php?fbid=' + JSON.parse(xhr.response).id;
         }
     }
 }

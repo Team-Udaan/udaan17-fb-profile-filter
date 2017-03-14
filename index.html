@@ -11,7 +11,17 @@
 
 <body>
 
-<img id="overlayImage" src="overlay.png" hidden>
+<div id="overlays" hidden>
+    <img src="overlay/antman.png" class="overlay-image">
+    <img src="overlay/blackpanthar.png" class="overlay-image">
+    <img src="overlay/blackwidow.png" class="overlay-image">
+    <img src="overlay/hawkeye.png" class="overlay-image">
+    <img src="overlay/hulk.png" class="overlay-image">
+    <img src="overlay/ironman.png" class="overlay-image">
+    <img src="overlay/scarletwitch.png" class="overlay-image">
+    <img src="overlay/spiderman.png" class="overlay-image">
+    <img src="overlay/vision.png" class="overlay-image">
+</div>
 
 <div class="container">
     <div class="row">
@@ -31,19 +41,25 @@
                 </div>
             </div>
             <div id="image-section" hidden>
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-center">Apply Udaan17 Filter</h3>
-                    <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center">Apply Udaan17 Filter</h3>
+                        <br>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
+                <div class="row">
                     <img id="profile-picture" hidden>
 
-                <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                    <img id="overlaid-profile-picture">
+                    <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                        <img id="overlaid-profile-picture">
+                    </div>
+                    <br>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="overlaid-images"></div>
+                    </div>
+                </div>
             </div>
             <div class="row" hidden>
                 <div class="col-md-12">
@@ -56,7 +72,7 @@
                     <h3 class="text-center">Upload the picture to Facebook</h3>
                     <br>
                     <div id="submit" class="text-center">
-                        <button id="upload-button" class="btn btn-primary">Upload</button>
+                        <button id="upload-button" class="btn btn-primary" disabled>Upload</button>
                     </div>
                 </div>
             </div>

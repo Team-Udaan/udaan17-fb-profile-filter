@@ -1,0 +1,14 @@
+{
+  "name": "udaan17-fb-profile-filter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "http-server"	
+  },
+  "author": "Chintan Acharya",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}

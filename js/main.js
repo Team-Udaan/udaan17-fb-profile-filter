@@ -9,6 +9,8 @@ function addPixel(basePixel, overlayPixel) {
     return result;
 }
 function getImageDataFromImage(image, width, height) {
+    width = width || 640;
+    height = height || 640;
     var canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
@@ -107,9 +109,7 @@ function postFacebookImage(blobImageData) {
             var uploadButton = document.getElementById('upload-button');
             uploadButton.innerHTML = 'Redirecting...';
             uploadButton.classList.add('btn-success');
-            setTimeout(function() {
-                window.location = 'https://www.facebook.com/photo.php?fbid=' + JSON.parse(xhr.response).id;
-            }, 5000);
+            window.open('https://www.facebook.com/photo.php?fbid=' + JSON.parse(xhr.response).id);
         }
     }
 }
@@ -148,11 +148,7 @@ function testAPI() {
         profilePictureElement.crossOrigin = 'Anonymous';
         profilePictureElement.src = response.data.url;
         profilePictureElement.addEventListener('load', function () {
-            var overlaidImageData = getDataUrlFromImageData(overlayImageData(
-                getImageDataFromImage(document.getElementById('profile-picture'), 640, 640),
-                getImageDataFromImage(document.getElementById('overlayImage'), 640, 640)
-            ));
-            document.getElementById('overlaid-profile-picture').src = overlaidImageData;
+            updateOverlayImages();
             var uploadButton = document.getElementById('upload-button');
             uploadButton.addEventListener('click', function () {
                 console.log('Uploading...');
@@ -160,8 +156,14 @@ function testAPI() {
                 uploadButton.innerHTML = 'Uploading...';
                 uploadButton.classList.remove('btn-primary');
                 uploadButton.disabled = true;
-                postFacebookImage(dataURItoBlob(overlaidImageData));
+                postFacebookImage(dataURItoBlob(document.getElementById('overlaid-profile-picture').src));
             });
+            var overlayImages = document.getElementsByClassName('overlaid-image');
+            for (var i = 0; i < overlayImages.length; i++) {
+                overlayImages[i].addEventListener('click', function () {
+                    document.getElementById('overlaid-profile-picture').src = this.src;
+                });
+            }
         });
     });
 }
@@ -169,3 +171,19 @@ document.getElementById('logout').addEventListener('click', function () {
     FB.logout();
     document.getElementById('status').innerHTML = "You have been logged out.";
 });
+
+
+function updateOverlayImages() {
+    var overlaidImageEl = document.getElementById('overlaid-images'),
+        overlayImages = document.getElementsByClassName('overlay-image');
+    for(var i = 0; i < overlayImages.length; i++) {
+        var img = document.createElement('img');
+        img.src = getDataUrlFromImageData(overlayImageData(
+            getImageDataFromImage(document.getElementById('profile-picture'), 640, 640),
+            getImageDataFromImage(overlayImages[i], 640, 640)
+        ));
+        img.classList.add('overlaid-image');
+        overlaidImageEl.appendChild(img);
+    }
+    document.getElementById('overlaid-profile-picture').src = overlaidImageEl.firstElementChild.src;
+}

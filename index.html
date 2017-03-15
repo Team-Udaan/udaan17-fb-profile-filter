@@ -29,6 +29,12 @@
             <div class="page-header">
                 <h1 class="text-center">Udaan17 Facebook Filter</h1>
             </div>
+            <div class="row" id="user-image-section">
+                <div class="col-md-12">
+                    <h3 class="text-center">Upload an image</h3>
+                    <input type="file" name="user-image" id="user-image">
+                </div>
+            </div>
             <div class="row" id="login-section">
                 <div class="col-md-12">
                     <h3 class="text-center">Login with your Facebook account</h3>
@@ -48,8 +54,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <img id="profile-picture" hidden>
-
+                    <img id="profile-picture" hidden crossorigin="anonymous">
                     <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                         <img id="overlaid-profile-picture">
                     </div>
@@ -73,6 +78,9 @@
                     <br>
                     <div id="submit" class="text-center">
                         <button id="upload-button" class="btn btn-primary">Upload</button>
+                        <a download="image.png" href="" id="image-download">
+                            <button id="download-button" class="btn btn-primary">Download</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -92,6 +100,7 @@
         </div>
     </div>
     <script src="js/main.js"></script>
+</div>
 </body>
 
 </html>

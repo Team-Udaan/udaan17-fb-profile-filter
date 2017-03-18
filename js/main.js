@@ -189,6 +189,7 @@ function updateOverlayImages() {
 
 document.getElementById('download-button').addEventListener('click', function() {
     var anchorTag = document.createElement('a');
+    anchorTag.download = 'ProfilePicture.jpg';
     anchorTag.href = getDataUrlFromImageData(getImageDataFromImage(document.getElementById('overlaid-profile-picture')));
     anchorTag.click();
 });

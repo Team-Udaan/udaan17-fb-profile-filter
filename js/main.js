@@ -126,9 +126,11 @@ function expandCard() {
     cardClassList.add('col-sm-8');
     var loginSection = document.getElementById('login-section');
     loginSection.hidden = true;
+    var uploadSection = document.getElementById('upload-section')
     var imageSection = document.getElementById('image-section');
     setTimeout(function () {
         imageSection.hidden = false;
+        uploadSection.hidden = false;
     }, 500);
 }
 

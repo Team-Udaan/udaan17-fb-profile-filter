@@ -129,7 +129,6 @@ function expandCard() {
     var imageSection = document.getElementById('image-section');
     setTimeout(function () {
         imageSection.hidden = false;
-        uploadSection.hidden = false;
     }, 500);
 }
 

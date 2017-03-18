@@ -186,3 +186,9 @@ function updateOverlayImages() {
     }
     document.getElementById('overlaid-profile-picture').src = overlaidImageEl.firstElementChild.src;
 }
+
+document.getElementById('download-button').addEventListener('click', function() {
+    var anchorTag = document.createElement('a');
+    anchorTag.href = getDataUrlFromImageData(getImageDataFromImage(document.getElementById('overlaid-profile-picture')));
+    anchorTag.click();
+});

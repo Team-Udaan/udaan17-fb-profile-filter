@@ -126,8 +126,6 @@ function expandCard() {
     cardClassList.add('col-sm-8');
     var loginSection = document.getElementById('login-section');
     loginSection.hidden = true;
-    var userImageSection = document.getElementById('user-image-section');
-    userImageSection.hidden = true;
 
     var imageSection = document.getElementById('image-section');
     var uploadSection = document.getElementById('upload-section');
@@ -151,7 +149,21 @@ function testAPI() {
         profilePictureElement.src = response.data.url;
         profilePictureElement.addEventListener('load', function () {
             updateOverlayImages();
-            registerOverlayHandlers();
+            var uploadButton = document.getElementById('upload-button');
+            uploadButton.addEventListener('click', function () {
+                console.log('Uploading...');
+                var uploadButton = document.getElementById('upload-button');
+                uploadButton.innerHTML = 'Uploading...';
+                uploadButton.classList.remove('btn-primary');
+                uploadButton.disabled = true;
+                postFacebookImage(dataURItoBlob(document.getElementById('overlaid-profile-picture').src));
+            });
+            var overlayImages = document.getElementsByClassName('overlaid-image');
+            for (var i = 0; i < overlayImages.length; i++) {
+                overlayImages[i].addEventListener('click', function () {
+                    document.getElementById('overlaid-profile-picture').src = this.src;
+                });
+            }
         });
     });
 }
@@ -164,7 +176,7 @@ document.getElementById('logout').addEventListener('click', function () {
 function updateOverlayImages() {
     var overlaidImageEl = document.getElementById('overlaid-images'),
         overlayImages = document.getElementsByClassName('overlay-image');
-    for (var i = 0; i < overlayImages.length; i++) {
+    for(var i = 0; i < overlayImages.length; i++) {
         var img = document.createElement('img');
         img.src = getDataUrlFromImageData(overlayImageData(
             getImageDataFromImage(document.getElementById('profile-picture'), 640, 640),
@@ -174,46 +186,4 @@ function updateOverlayImages() {
         overlaidImageEl.appendChild(img);
     }
     document.getElementById('overlaid-profile-picture').src = overlaidImageEl.firstElementChild.src;
-    document.getElementById('image-download').href = overlaidImageEl.firstElementChild.src;
-}
-
-document.getElementById('user-image').addEventListener('change', function () {
-    var reader = new FileReader();
-    reader.addEventListener('load', function () {
-        var profilePictureElement = document.getElementById('profile-picture');
-        profilePictureElement.crossOrigin = 'Anonymous';
-        profilePictureElement.src = reader.result;
-        expandCard();
-        updateOverlayImages();
-        registerOverlayHandlers();
-    });
-    reader.readAsDataURL(this.files[0]);
-});
-
-document.getElementById('upload-button').addEventListener('click', function () {
-    console.log('Uploading...');
-    var uploadButton = document.getElementById('upload-button');
-    uploadButton.innerHTML = 'Uploading...';
-    uploadButton.classList.remove('btn-primary');
-    uploadButton.disabled = true;
-    postFacebookImage(dataURItoBlob(document.getElementById('overlaid-profile-picture').src));
-});
-
-function registerOverlayHandlers() {
-    var overlayImages = document.getElementsByClassName('overlaid-image');
-    for (var i = 0; i < overlayImages.length; i++) {
-        overlayImages[i].addEventListener('click', function () {
-            document.getElementById('overlaid-profile-picture').src = this.src;
-            document.getElementById('image-download').href = this.src;
-        });
-    }
-}
-
-function downloadImage(img) {
-    var canvas = document.createElement('canvas');
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    var data = canvas.toDataURL();
-    var prev = window.location.href;
-    window.location.href = data.replace("image/png", "image/octet-stream");
-    window.location.href = prev;
 }

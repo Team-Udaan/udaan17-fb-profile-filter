@@ -34,7 +34,7 @@
     height: 100px;
 }
 
-#upload-button, #download-button {
+#upload-button {
     font-size: 16px;
     padding: 10px 16px;
 }
